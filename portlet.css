@@ -1,0 +1,37 @@
+.myfox
+{
+	text-align: center;
+	min-height: 128px;
+}
+
+.myfox img
+{
+	height: 100px;
+	width: 90px;
+}
+
+
+/*****
+.protection
+{
+	height: 79px;
+	width: 62px;
+	background-image: url('/assets/myFox/images/widget_protection_icon.png');
+	background-repeat:no-repeat;
+}
+
+.armed
+{
+	background-position: -124px 0px;
+}
+
+.partial
+{
+	background-position: -62px 0px;
+}
+
+.off
+{
+	background-position: 0px 0px;
+}
+*/

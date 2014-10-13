@@ -1,0 +1,16 @@
+<% stylesheet('assets/'+key+'/portlet.css') %>
+<% 
+  var myFox = SARAH.ConfigManager.getModule(key); 
+  var mf_show  = myFox.mf_portlet(SARAH); 
+%>
+
+<h3 class="default"><%= key %> <%= module.version %></h3>
+<p class="overflow myfox protection">
+	<% if(mf_show.connect) { %>
+<!--	<a href="https://api.myfox.me/oauth2/authorize?response_type=code&client_id=d3bc82b2544341f6823c43ffeef51c95&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fsarah%2Fmyfox&state=sf5dsq5d5sqdsq">
+		<img src="assets/myfox/images/<%= mf_show.css_status %>.png">
+	</a> -->
+	<% } else { %>
+		<img src="assets/myfox/images/<%= mf_show.css_status %>.png">
+	<% } %>
+</p>

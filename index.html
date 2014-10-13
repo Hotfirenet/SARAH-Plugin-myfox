@@ -1,0 +1,104 @@
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+		jQuery.ajax({
+			url: '/sarah/myfox?myFoxAction=listSite',
+			type: 'GET',
+			dataType: "json",
+			success: function (data) {
+				jQuery.each(data.payload, function( i, item ) {
+					$('#listCentrale > tbody:last').append('<tr><td>'+ item.siteId +'</td><td>'+ item.label +'</td></tr>');
+				});
+			}
+		});	
+		
+
+    });
+</script>
+<p class="page-header">
+	<span class="lead">Plugin My Fox Pour SARAH par <a href="http://blog.hotfirenet.com/" target="_blank">Hotfirenet</a></span></br></br>		
+</p>
+
+<div class="row">
+	<div class="col-md-4">
+		<h2>Navigation</h2>
+		<ul class="nav nav-list">
+			<li>Pr&eacute;sentation</li>
+			<li>Configuration</li>
+			<li>
+				<ul>
+					<li>Demande d'identifiants MyFox</li>
+					<li>Liste de vos centrales</li>
+					<li>Config de SARAH</li>
+				</ul>
+			</li>
+			<li>Utilisation</li>
+				<ul>
+					<li>de la partie commande vocale</li>
+					<li>du dashboard</li>
+					<li>du context My Fox</li>
+				</ul>				
+			<li>A propos</li>
+		</ul>
+	</div>
+	<div class="col-md-8">
+		<div id="plugin-myfox-presentation" class="row">
+			<h2>Pr&eacute;sentation</h2>
+			<p>Ce plugin s'appuie sur l'API officielle de la soci&eacute;t&eacute; MyFox.<br />Vous pourrez gr&acirce;ce &agrave; ce plugin :
+				<ul>
+					<li>Connaitre le statut par le biais du tableau de bord de SARAH ou &agrave; la voix,</li>
+					<li>Activer totalement, partiellement ou encore d&eacute;sactiver l'alarme,</li>
+					<li>Utiliser dans d'autres plugins des informations de votre centrale remont&eacute;es dans par le plugin.</li>
+				</ul>
+				<a href="http://blog.hotfirenet.com/sarah/plugin-myfox-sarah/" title="Video de presentation">Une vid&eacute;o vaut mieux qu'un long discours...</a> 
+			</p>
+		</div>
+		<div id="plugin-myfox-config" class="row">
+			<h2>Configuration</h2>
+			<div id="create-application" class="row">
+				<h3>Identfiants API</h3>
+				<p>Dans un premier temps vous devez faire la demande d'identifiants pour utiliser l'API MyFox.</p>
+				<p>Pour ce faire vous devez vous connectez</p>
+				
+			</div>
+			<div id="centrale" class="row">
+				<h3>Centrales</h3>
+				<p>Cette partie liste les centrales d'alarmes que vous avez.</p>
+				<p>Ce plugin est pour le moment pr&eacute;vu pour fonctionner avec une seule centrale. Je vous invites donc &agrave; copier ou retenir l'identifiant (ID) de l'alarme que vous souhaitez commander.</p>
+				<div class="col-md-1"></div>
+				<div class="col-md-10">
+					<table id="listCentrale" class="table table-bordered">
+						<caption>Liste de vos centrales</caption>
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Libell&eacute;</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>	
+				</div>
+				<div class="col-md-1"></div>	
+			</div>
+			<div id="config-SARAH" class="row">
+				<h3>Configuration de SARAH</h3>
+				<p>Vous avez maintenant tous les &eacute;l&eacutements c&eacute;cessaires pour configurer SARAH</p>
+				<p><img src="assets/myfox/images/configSARAH.png" alt="config-SARAH" width="60%" height="60%"></p>
+				<p>Vous pourez red&eacute;marrer SARAH serveur pour confirmer la prise en compte des nouvelles informations</p/>
+				
+			</div>			
+		</div>
+		<div id="plugin-myfox-using" class="row">
+		
+			http://127.0.0.1:8080/sarah/myfox?action=getSecurity&silent=1
+			il se peut que cette methode retourne comme valeur undefined.
+		</div>
+		<div id="plugin-myfox-about" class="row">
+			<h3>A propos</h3>
+			Ce plugin est d&eacute;velopp&eacute; par Hotfirenet.
+			Un grand merci à J&eacute;rome VEYRET pour m'avoir supporter lors des diff&eacute;rents tests.
+			Les images utilis&eacute;s ont &eacute;t&eacute; cr&eacute;e par John MACWHYWER. 
+		</div>
+	</div>
+</div>
+

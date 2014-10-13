@@ -1,0 +1,15 @@
+<grammar version="1.0" xml:lang="fr-FR" mode="voice" root="ruleMyFox" xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0">
+    <rule id="ruleMyFox" scope="public">
+        <example>Sarah statut alarme</example>
+        <tag>out.action=new Object(); </tag>
+        <item weight="2">Sarah</item>
+        <one-of>
+            <item>Qu'elle est le statut de l'alarme<tag>out.action.myFoxAction = "getSecurity";</tag></item>
+			
+            <item>désactive l'alarme<tag>out.action.myFoxAction = "setSecurity"; out.action.level = "disarmed";</tag></item>
+			<item>active partiellement l'alarme<tag>out.action.myFoxAction = "setSecurity"; out.action.level = "partial";</tag></item>
+			<item>active totalement l'alarme<tag>out.action.myFoxAction = "setSecurity"; out.action.level = "armed";</tag></item>            
+        </one-of>
+        <tag>out.action._attributes.uri="http://127.0.0.1:8080/sarah/myfox";</tag>
+    </rule>
+</grammar>
