@@ -203,7 +203,8 @@ var setSecurity = function(siteId, securityLevel, token, cb)
 	
 	sendRequest(setSecurityUrl, function(responseRequest){
 
-		console.log(responseRequest);
+		if(mf_debug)
+			console.log(responseRequest);
 	
 		levelResponse = JSON.parse(responseRequest);
 		
