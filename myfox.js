@@ -246,17 +246,6 @@ var listSite = function(token, cb)
 			console.log('listSite: ' + responseRequest);	
 	
 		cb(responseRequest);
-		// var mySite = JSON.parse(responseRequest);
-		// Object.keys(mySite.payload).forEach(function(key) 
-		// {
-			// cb = {key, mySite.payload[key].label};
-			
-			// if(mf_debug) 
-			// {
-				// console.log(key);
-				// console.log(mySite.payload[key].label);			
-			// }
-		// });
 	});
 }
 
@@ -414,7 +403,10 @@ exports.mf_portlet = function(SARAH)
 	var data = {};
 
 	data.css_status = SARAH.context.myfox.status;
-	console.log(SARAH.context.myfox.status);
+	
+	if(mf_debug)
+		console.log(SARAH.context.myfox.status);
+		
 	data.connect = mf_error;
 		
 	return data; 
