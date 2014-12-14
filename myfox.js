@@ -5,12 +5,15 @@ const mf_urlToken = 'https://api.myfox.me/oauth2/token';
 const mf_siteUrl = 'https://api.myfox.me:443/v2/client/site/list?access_token=%s';
 const mf_getSecurityUrl = 'https://api.myfox.me:443/v2/site/%d/security/get?access_token=%s';
 const mf_setSecurityUrl = 'https://api.myfox.me:443/v2/site/%d/security/set/%s?access_token=%s';
+const mf_setDeviceSocketUrl = 'https://api.myfox.me:443/v2/site/%d/device/%d/socket/%s?access_token=%s';
+const mf_listDeviceSocketUrl = 'https://api.myfox.me:443/v2/site/%d/device/socket/items?access_token=%s';
+
 
 /**
 * Declaration des variables
 */
 var util = require('util');
-var mf_debug = false;
+var mf_debug = true;
 var mf_error = false;
 var mf_client_id = '';
 var mf_client_secret = '';
@@ -116,6 +119,18 @@ exports.action = function(data, callback, config, SARAH)
 						callback({'tts' : response});
 					});
 					break;
+
+				case 'setDeviceSocket':
+					setDeviceSocket(mf_idCentrale, data.deviceId, data.action, token.token, function(response){
+						callback({'tts' : response});
+					});
+					break;		
+
+				case 'listDeviceSocket':
+					listDeviceSocket(mf_idCentrale, token.token, function(response){
+						callback({'tts' : response});
+					});
+					break;					
 					
 				default:
 					callback({'tts' : 'Action inconnu'});
@@ -165,6 +180,65 @@ exports.cron = function(callback, task, SARAH)
 	}
 }
 
+/**
+* function list device socket
+*/
+var listDeviceSocket = function(siteId, token, cb)
+{
+	var listDeviceSocketUrl = util.format(mf_listDeviceSocketUrl, siteId, token);
+	
+	sendRequest(listDeviceSocketUrl, function(responseRequest){
+		if(mf_debug)
+			console.log(responseRequest);
+	
+		response = JSON.parse(responseRequest);
+		
+		if(response.status == 'KO')
+		{
+			console.log(response.error);	
+			cb(response.error);
+			return;
+		}
+		else
+		{			
+			if(mf_debug)
+			console.log('listDeviceSocket: ' + response.payload );
+				
+			cb(JSON.stringify(response.payload));
+			return;
+		}	
+	});
+}
+
+/**
+* Set on or off device socket
+*/
+var setDeviceSocket = function(siteId, deviceId, action, token, cb)
+{
+	var setDeviceSocketUrl = util.format(mf_setDeviceSocketUrl, siteId, deviceId, action, token);
+	
+	sendRequest(setDeviceSocketUrl, function(responseRequest){
+
+		if(mf_debug)
+			console.log(responseRequest);
+	
+		response = JSON.parse(responseRequest);
+		
+		if(response.status == 'KO')
+		{
+			console.log(response.error);	
+			cb(response.error);
+			return;
+		}
+		else
+		{			
+			if(mf_debug)
+				console.log('setDeviceSocket: ' );
+				
+			cb(response.status);
+		}		
+	});
+}
 
 
 /**

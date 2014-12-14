@@ -10,6 +10,20 @@
 			<item>active partiellement l'alarme<tag>out.action.myFoxAction = "setSecurity"; out.action.level = "partial";</tag></item>
 			<item>active totalement l'alarme<tag>out.action.myFoxAction = "setSecurity"; out.action.level = "armed";</tag></item>            
         </one-of>
+
+		<one-of>
+		  <item>Allume<tag>out.action.action = "on";</tag></item>
+		  <item>Eteint<tag>out.action.action = "off";</tag></item>
+		  <item>Active<tag>out.action.action = "on";</tag></item>
+		  <item>Désactive<tag>out.action.action = "off";</tag></item>
+		</one-of>		
+		<item repeat="0-1" weight="1.2">
+			<one-of>
+				<item>Prise chambre<tag>out.action.myFoxAction="setDeviceSocket"; out.action.deviceId=</tag></item>
+				<item>Lumiere chambre<tag>out.action.myFoxAction="setDeviceSocket"; out.action.deviceId=</tag></item>
+			</one-of>
+		</item>		
+		
         <tag>out.action._attributes.uri="http://127.0.0.1:8080/sarah/myfox";</tag>
     </rule>
-</grammar>
+</grammar> 
